@@ -9,7 +9,7 @@
 	* [Make test STAR index](#make-test-star-index)
 	* [Trim reads](#trim-reads)
 	* [Align reads to genome with STAR](#align-reads-to-genome-with-star)
-	* [Remove probable internal priming reads and counts over transcripts](#remove-probable-internal-priming-reads-and-count-reads-over-transcripts)
+	* [Remove probable internal priming reads and count reads over transcripts](#remove-probable-internal-priming-reads-and-count-reads-over-transcripts)
 - [Example 2 - run the entire pipeline on a single sample with slurm wrapper script](#example-2---run-the-entire-pipeline-on-a-single-sample-with-slurm-wrapper-script)
 - [Expected output of test](#Expected-output-of-test)
 - [Packages used to test pipeline](#Packages-used-to-test-pipeline)
