@@ -2,7 +2,7 @@
 
 ml bbmap
 
-# Aligns reads to genome with STAR
+# Trims reads with bbmap
 #
 # $1 - name of fastq file with Quantseq reads
 # $2 - output directory name (must exist already)

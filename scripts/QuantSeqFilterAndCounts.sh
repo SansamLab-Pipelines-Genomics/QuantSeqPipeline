@@ -10,7 +10,7 @@ ml htseq
 
 # Filters aligned reads and counts over transcripts.
 #
-# This will filter reads from a QuantseqFWD experiment that end at a probable genomic poly-A priming site. It will then count the remaining reads over gtf transcripts. Takes four arguments.
+# This will filter reads from a QuantseqFWD experiment that end at a probable genomic poly-A priming site. It will then count the remaining reads over gtf transcripts.
 #
 # $1 - basename of .bam file with aligned Quantseq reads
 # $2 - chromosome sizes file
