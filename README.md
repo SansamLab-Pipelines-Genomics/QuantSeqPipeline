@@ -11,8 +11,8 @@
 	* [Align reads to genome with STAR](#align-reads-to-genome-with-star)
 	* [Remove probable internal priming reads and counts over transcripts](#remove-probable-internal-priming-reads-and-counts-over-transcripts)
 - [Example 2 - run the entire pipeline on a single sample with slurm wrapper script](#example-2---run-the-entire-pipeline-on-a-single-sample-with-slurm-wrapper-script)
-- [Expected output of test](##Expected-output-of-test)
-- [Packages used to test pipeline](##Packages-used-to-test-pipeline)
+- [Expected output of test](#Expected-output-of-test)
+- [Packages used to test pipeline](#Packages-used-to-test-pipeline)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
