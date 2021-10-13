@@ -11,6 +11,8 @@
 	* [Align reads to genome with STAR](#align-reads-to-genome-with-star)
 	* [Remove probable internal priming reads and counts over transcripts](#remove-probable-internal-priming-reads-and-counts-over-transcripts)
 - [Example 2 - run the entire pipeline on a single sample with slurm wrapper script](#example-2---run-the-entire-pipeline-on-a-single-sample-with-slurm-wrapper-script)
+- [Expected output of test](#Expected output of test)
+- [Packages used to test pipeline](#Packages used to test pipeline)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -63,7 +65,6 @@ sbatch --cpus-per-task 6 --mem 48G scripts/makeTestSTARIndex.sh
 ```
 sbatch scripts/TrimReads.sh \
 testFiles/test.fastq \
-starTestIndex/ \
 test_outputdir \
 refFiles/polyA.fa.gz,refFiles/truseq.fa.gz
 ```
@@ -108,3 +109,46 @@ testFiles/test.chrm.lengths \
 testFiles/test.fa \
 testFiles/test.gtf
 ```
+
+## Expected output of test
+File | Description
+---- | -----------
+starTestIndex/ | output from makeTestSTARIndex.sh; folder with files of STAR index
+test_trimmed.fastq | output from TrimReads.sh; trimmed version of the input fastq - test.fastq
+testAligned.sortedByCoord.out.bam | output from AlignWithSTAR.sh; aligned reads
+testLog.final.out | output from AlignWithSTAR.sh; see STAR manual
+testLog.out | output from AlignWithSTAR.sh; see STAR manual
+testLog.progress.out | output from AlignWithSTAR.sh; see STAR manual
+testSJ.out.tab | output from AlignWithSTAR.sh; see STAR manual
+test\_positive\_strand.bam | output from QuantSeqFilterAndCounts.sh; reads mapping to positive strand
+test\_positive\_strand.bam.bai | output from QuantSeqFilterAndCounts.sh
+test\_negative\_strand.bam | output from QuantSeqFilterAndCounts.sh; reads mapping to negative strandtest\_negative\_strand.bam.bai | output from QuantSeqFilterAndCounts.sh
+test\_positive\_strand_flank.bed | coorindates +/- 10 bp around ends of positive strand mapped readstest\_positive\_strand_flank.fasta | output from QuantSeqFilterAndCounts.sh; genomic sequences of test\_positive\_strand_flank.bed
+test\_negative\_strand_flank.bed | output from QuantSeqFilterAndCounts.sh; coorindates +/- 10 bp around starts of positive strand mapped reads
+test\_negative\_strand_flank.fasta | output from QuantSeqFilterAndCounts.sh; genomic sequences of test\_negative\_strand_flank.bed
+test\_positive\_strand_internalPriming.bed | output from QuantSeqFilterAndCounts.sh and GetInternalPrimingSites.R; coordinates of positive strand read ends with likely genomic polyA internalpriming
+test\_negative\_strand_internalPriming.bed | output from QuantSeqFilterAndCounts.sh and GetInternalPrimingSites.R; ; coordinates of negative strand read starts with likely genomic polyA internal priming
+test\_positive\_strand\_internalPrimingReads.txt | output from QuantSeqFilterAndCounts.sh; IDs of reads at likely internal priming sites
+test\_negative\_strand\_internalPrimingReads.txt | output from QuantSeqFilterAndCounts.sh; IDs of reads at likely internal priming sites
+test\_positive\_strand\_filtered.bam | output from QuantSeqFilterAndCounts.sh; mapped reads after removal of those listed in test\_positive\_strand\_internalPrimingReads.txt
+test\_negative\_strand\_filtered.bam | output from QuantSeqFilterAndCounts.sh; mapped reads after removal of those listed in test\_negative\_strand\_internalPrimingReads.txt
+test\_filtered.bam | output from QuantSeqFilterAndCounts.sh; merged test\_positive\_strand\_filtered.bam and test\_negative\_strand\_filtered.bamtest\_filtered.bam.csi | output from QuantSeqFilterAndCounts.sh 
+test\_counts.tab | output from QuantSeqFilterAndCounts.sh; read counts over transcripts; made with htseq-count
+## Packages used to test pipeline
+Package | Version
+------- | -------
+slurm | 20.02
+samtools | 1.11
+bedtools | 2.30.0
+bedops | 2.4.3
+picard | 2.21.2
+python | 3.7.0
+htseq | 0.13.5
+bbmap | 36.99
+star | 2.6.1
+R | 4.0.3
+zoo (R package) | 1.8-8
+
+
+
+
