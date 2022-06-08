@@ -1,5 +1,7 @@
 # Alignment and counting of reads from QuantseqFWD Experiments
 
+## Introduction
+This Quantseq pipeline converts short read .fastq files from 3' end sequencing into counts tables. The pipeline requires an index of the genome for the START aligner. After trimming to remove polyA sequences and adapters, the reads are aligned to the genome with STAR. Reads aligning to sequences adjacent to probable genomic internal polyA priming sites are removed. Reads are assigned to transcripts in a provided .gtf file and then a table a counts per transcript is generated. This table can be used for statistical analysis using DESeq2 or other statistical analysis software. This pipeline is comprised of shell scripts that can be executed on SLURM using the provided wrapper script. Conda environments are not provided, so please consult with your HPC administrator to run this.
 
 - [Scripts](#scripts)
 - [Data files in repository](#data-files-in-repository)
