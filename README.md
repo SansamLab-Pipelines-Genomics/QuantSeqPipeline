@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/416819510.svg)](https://zenodo.org/badge/latestdoi/416819510)
+
+
 # Alignment and counting of reads from QuantseqFWD Experiments
 
 ## Introduction
